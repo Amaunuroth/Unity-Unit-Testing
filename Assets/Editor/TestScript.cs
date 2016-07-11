@@ -135,4 +135,36 @@ public class ClassyTests
         Console.WriteLine(output);
         UnityEngine.Debug.Log(output);
     }
+
+    [Test]
+    public void MicroIslandTest()
+    {
+        IslandMap map = new IslandMap(10, 10);
+        map.PrintMap();
+        Console.WriteLine(map.IslandCount());
+    }
+        
+
+    [Test]
+    public void SmallIslandTest()
+    {
+        IslandMap map = new IslandMap(100, 100);
+        Console.WriteLine(map.IslandCount());
+    }
+
+
+    [Test]
+    public void MediumIslandTest()
+    {
+        IslandMap map = new IslandMap(1000, 1000);
+        Console.WriteLine(map.IslandCount());
+    }
+
+
+    [Test]
+    public void GiantIslandTest()
+    {
+        IslandMap map = new IslandMap(10000, 10000);
+        Console.WriteLine(map.IslandCount());
+    }
 }
