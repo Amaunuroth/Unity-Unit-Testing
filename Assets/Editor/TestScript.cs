@@ -135,4 +135,30 @@ public class ClassyTests
         Console.WriteLine(output);
         UnityEngine.Debug.Log(output);
     }
+
+
+
+    [Test]
+    public void TestBitMasking(
+        [Values(285)] int value
+    )
+    {
+        int start = value;
+        value |= (1 << 7);
+        UnityEngine.Debug.Log("derp: " + value);
+        Assert.AreEqual(start, value - (1 << 7));
+        value &= ~(1 << 7);
+        UnityEngine.Debug.Log("derp2: " + value);
+        Assert.AreEqual(start, value);
+    }
+
+    [Test]
+    public void TestEncoder(
+        [Values("dddddddddx3hab", "3x3ddddddab", "111111111x3ab", "bdx63a", "1111112x334ab", "aabbcc", "ab", "")]
+        string value)
+    {
+        string encoded = EncodeDecode.Encode(value);
+        string decoded = EncodeDecode.Decode(encoded);
+        Assert.AreEqual(value, decoded);
+    }
 }
