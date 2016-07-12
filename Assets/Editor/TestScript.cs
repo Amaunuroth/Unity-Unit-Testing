@@ -145,10 +145,8 @@ public class ClassyTests
     {
         int start = value;
         value |= (1 << 7);
-        UnityEngine.Debug.Log("derp: " + value);
         Assert.AreEqual(start, value - (1 << 7));
         value &= ~(1 << 7);
-        UnityEngine.Debug.Log("derp2: " + value);
         Assert.AreEqual(start, value);
     }
 
@@ -160,5 +158,33 @@ public class ClassyTests
         string encoded = EncodeDecode.Encode(value);
         string decoded = EncodeDecode.Decode(encoded);
         Assert.AreEqual(value, decoded);
+    }
+
+    [Test]
+    public void TestTree([Values(1, 10, 100, 1000)] int count)
+    {
+        SideTree st = new SideTree(count);
+        int height = st.Height();
+        StringBuilder sb = new StringBuilder();
+        List<string> names = st.RightSide();
+        foreach (string s in names)
+        {
+            sb.Append(s + ", ");
+        }
+        UnityEngine.Debug.Log("right side: " + sb.ToString());
+        Console.WriteLine("right side: " + sb.ToString());
+
+        Assert.AreEqual(height, names.Count);
+
+        sb = new StringBuilder();
+        names = st.LeftSide();
+        foreach (string s in names)
+        {
+            sb.Append(s + ", ");
+        }
+        UnityEngine.Debug.Log("left side: " + sb.ToString());
+        Console.WriteLine("left side: " + sb.ToString());
+
+        Assert.AreEqual(height, names.Count);
     }
 }
