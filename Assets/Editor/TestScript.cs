@@ -187,4 +187,12 @@ public class ClassyTests
 
         Assert.AreEqual(height, names.Count);
     }
+
+    [Test]
+    public void TestDelauneyThings([Values(10, 100, 1000)] int count)
+    {
+        UnityEngine.Rect rect = new UnityEngine.Rect(0f, 0f, 1f * count, 1f * count);
+        DelauneyTriangles dt = new DelauneyTriangles(count, rect, -.5f, 2f);
+        dt.MakeMesh();
+    }
 }
